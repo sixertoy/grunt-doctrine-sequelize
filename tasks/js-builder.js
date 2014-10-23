@@ -5,6 +5,9 @@
  * Licensed under the MIT license.
  *
  * https://raw.githubusercontent.com/sequelize/sequelize-auto/master/lib/index.js
+ * https://github.com/sequelize/sequelize/wiki/API-Reference-DataTypes
+ * https://github.com/sequelize/sequelize/wiki/API-Reference
+ * http://sequelizejs.com/docs/1.7.8/installation
  *
  */
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50*/
@@ -35,6 +38,8 @@ module.exports = function (grunt) {
      */
     function _fields(obj) {
         var i, lines = [];
+        lines.push(obj.name + ': {');
+        lines.push('}');
         return lines;
     }
 
@@ -47,7 +52,7 @@ module.exports = function (grunt) {
         var i, lines = [];
         if (obj.hasOwnProperty('name')) {
             lines.push('return sequelize.define(\'' + obj.name + '\', {');
-            if (obj.hasOwnProperty('name')) {
+            if (obj.hasOwnProperty('field')) {
                 for (i = 0; i < obj.field; i++) {
                     var sublines = _fields(obj.field[i]);
                     lines = lines.concat(sublines);

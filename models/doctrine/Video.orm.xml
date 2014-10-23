@@ -15,14 +15,17 @@
     <field name="dateUpdate" type="datetime" column="date_update" nullable="false"/>
     <field name="state" type="string" column="state" length="255" nullable="false"/>
     <many-to-one field="user" target-entity="User">
+
       <join-columns>
         <join-column name="user_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
+
     <many-to-one field="event" target-entity="Event">
       <join-columns>
         <join-column name="event_id" referenced-column-name="id"/>
       </join-columns>
+
     </many-to-one>
   </entity>
 </doctrine-mapping>
