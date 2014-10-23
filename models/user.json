@@ -1,0 +1,216 @@
+{
+    "doctrine-mapping": {
+        "xmlns": [
+            "http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        ],
+        "xmlns:xsi": [
+            "http://www.w3.org/2001/XMLSchema-instance"
+        ],
+        "xsi:schemaLocation": [
+            "http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+        ],
+        "entity": [
+            {
+                "name": [
+                    "User"
+                ],
+                "table": [
+                    "user"
+                ],
+                "unique-constraints": [
+                    {
+                        "unique-constraint": [
+                            {
+                                "name": [
+                                    "UNIQ_8D93D649F85E0677"
+                                ],
+                                "columns": [
+                                    "username"
+                                ]
+                            },
+                            {
+                                "name": [
+                                    "UNIQ_8D93D6493124B5B6"
+                                ],
+                                "columns": [
+                                    "lastname"
+                                ]
+                            },
+                            {
+                                "name": [
+                                    "UNIQ_8D93D64983A00E68"
+                                ],
+                                "columns": [
+                                    "firstname"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "id": [
+                    {
+                        "name": [
+                            "id"
+                        ],
+                        "type": [
+                            "integer"
+                        ],
+                        "column": [
+                            "id"
+                        ],
+                        "generator": [
+                            {
+                                "strategy": [
+                                    "IDENTITY"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "field": [
+                    {
+                        "name": [
+                            "username"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "username"
+                        ],
+                        "length": [
+                            "25"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "lastname"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "lastname"
+                        ],
+                        "length": [
+                            "255"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "firstname"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "firstname"
+                        ],
+                        "length": [
+                            "255"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "idPicture"
+                        ],
+                        "type": [
+                            "integer"
+                        ],
+                        "column": [
+                            "id_picture"
+                        ],
+                        "nullable": [
+                            "true"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "dateCreate"
+                        ],
+                        "type": [
+                            "datetime"
+                        ],
+                        "column": [
+                            "date_create"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "dateUpdate"
+                        ],
+                        "type": [
+                            "datetime"
+                        ],
+                        "column": [
+                            "date_update"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "salt"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "salt"
+                        ],
+                        "length": [
+                            "32"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "password"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "password"
+                        ],
+                        "length": [
+                            "255"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "isActive"
+                        ],
+                        "type": [
+                            "boolean"
+                        ],
+                        "column": [
+                            "is_active"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

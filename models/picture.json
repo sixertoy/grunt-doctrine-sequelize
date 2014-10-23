@@ -1,0 +1,124 @@
+{
+    "doctrine-mapping": {
+        "xmlns": [
+            "http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        ],
+        "xmlns:xsi": [
+            "http://www.w3.org/2001/XMLSchema-instance"
+        ],
+        "xsi:schemaLocation": [
+            "http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+        ],
+        "entity": [
+            {
+                "name": [
+                    "Picture"
+                ],
+                "table": [
+                    "picture"
+                ],
+                "id": [
+                    {
+                        "name": [
+                            "id"
+                        ],
+                        "type": [
+                            "integer"
+                        ],
+                        "column": [
+                            "id"
+                        ],
+                        "generator": [
+                            {
+                                "strategy": [
+                                    "IDENTITY"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "field": [
+                    {
+                        "name": [
+                            "path"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "path"
+                        ],
+                        "length": [
+                            "250"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "name"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "name"
+                        ],
+                        "length": [
+                            "250"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "legend"
+                        ],
+                        "type": [
+                            "string"
+                        ],
+                        "column": [
+                            "legend"
+                        ],
+                        "length": [
+                            "45"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "dateCreate"
+                        ],
+                        "type": [
+                            "datetime"
+                        ],
+                        "column": [
+                            "date_create"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    },
+                    {
+                        "name": [
+                            "dateUpdate"
+                        ],
+                        "type": [
+                            "datetime"
+                        ],
+                        "column": [
+                            "date_update"
+                        ],
+                        "nullable": [
+                            "false"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
