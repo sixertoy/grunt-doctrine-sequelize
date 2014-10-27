@@ -24,27 +24,51 @@ module.exports = function (grunt) {
         // Configuration to be run (and then tested).
         build_models: {
             options: {
+                root: 'doctrine-mapping'
+            },
+            files: {
                 dest: 'models/',
-                extension: '.orm.xml'
-            },
-            files: ['models/**/*', 'models/**/*.xml', 'models/**/*.orm.xml']
+                src: ['models/doctrine/**/*']
+            }
         },
-        jasmine : {
-            options : {
-                specs : 'specs/**/*.spec.js'
+        jasmine_node: {
+            options: {
+                forceExit: true,
+                showColors: true,
+                includeStackTrace: false,
+                match: '.',
+                matchall: false,
+                extensions: 'js',
+                specNameMatcher: 'spec',
+                jUnit: {
+                    report: true,
+                    savePath: "./build/reports/jasmine/",
+                    useDotNotation: true,
+                    consolidate: true
+                }
             },
-            src: ['tasks/**/*.js', 'src/**/*.js']
+            all: ['specs/']
+        },
+        watch: {
+            tests: {
+                files: './lib/**/*',
+                tasks: ['jshint'],
+                options: {
+                    spawn: true
+                }
+            }
         }
     });
 
     grunt.loadTasks('tasks');
 
     // These plugins provide necessary tasks.
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     // By default, lint and run all tests.
-    grunt.registerTask('tests', ['jshint', 'jasmine']);
-    grunt.registerTask('default', ['tests']);
+    grunt.registerTask('jasmine', ['jshint', 'jasmine_node']);
+    grunt.registerTask('default', ['watch']);
 
 };

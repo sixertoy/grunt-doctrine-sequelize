@@ -12,8 +12,8 @@
     </id>
     <field name="name" type="string" column="name" length="255" nullable="false"/>
     <field name="univers" type="string" column="univers" length="255" nullable="false"/>
-    <field name="color" type="string" column="color" length="255" nullable="false"/>
-    <field name="state" type="string" column="state" length="255" nullable="false"/>
+    <field name="color" type="enumeventcolor" column="color" nullable="false"/>
+    <field name="state" type="enumeventstate" column="state" nullable="false"/>
     <field name="dateEvent" type="datetime" column="date_event" nullable="false"/>
     <field name="dateCreate" type="datetime" column="date_create" nullable="false"/>
     <field name="dateUpdate" type="datetime" column="date_update" nullable="false"/>

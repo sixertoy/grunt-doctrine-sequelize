@@ -30,13 +30,18 @@
     "xml2js": "^0.4.4",
     "q": "^1.0.1",
     "lodash": "^2.4.1",
-    "jshint": "^2.5.6"
+    "jshint": "^2.5.6",
+    "sequelize": "^2.0.0-rc2",
+    "js-beautify": "^1.5.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-jasmine": "^0.8.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "sequelize-auto": "0.0.7",
+    "mysql": "^2.5.2",
+    "grunt-jasmine-node": "https://github.com/malas34/grunt-jasmine-node/archive/jasmine-node_v1.14.tar.gz"
   },
   "peerDependencies": {
     "grunt": "~0.4.4"

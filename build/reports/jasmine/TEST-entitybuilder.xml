@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+<testsuite name="entity-builder" errors="0" tests="0" failures="0" time="0" timestamp="2014-10-27T00:57:53">
+</testsuite>
+<testsuite name="entity-builder._type()" errors="0" tests="11" failures="0" time="0.014" timestamp="2014-10-27T00:57:53">
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.TEXT" time="0.012"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.DATE" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.STRING" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.INTEGER" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.BIGINT" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.BOOLEAN" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.FLOAT" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.STRING.BINARY" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.DECIMAL" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.BLOB" time="0"></testcase>
+  <testcase classname="entity-builder._type()" name="Should return DataTypes.INTEGER (smallint)" time="0"></testcase>
+</testsuite>
+<testsuite name="entity-builder._columns()" errors="0" tests="15" failures="0" time="0.024" timestamp="2014-10-27T00:57:53">
+  <testcase classname="entity-builder._columns()" name="Should return a string nonull 45" time="0.003"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a string nonull" time="0.003"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a string null" time="0.002"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a string nonull 255" time="0"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a string nonull 255 unique" time="0.002"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a string nonull 255 autoIncremnt unique" time="0.001"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a string nonull 255 primary autoIncremnt unique" time="0.001"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a string nonull 255 primary autoIncremnt unique" time="0.001"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a bigint" time="0.003"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a bigint" time="0.001"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a bigint unsigned" time="0.002"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a bigint unsigned zerofill" time="0.001"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a bigint zerofill" time="0.001"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a bigint zerofill 11" time="0.001"></testcase>
+  <testcase classname="entity-builder._columns()" name="Should return a bigint unsigned zerofill 11" time="0.002"></testcase>
+</testsuite>
+<testsuite name="entity-builder._entities()" errors="0" tests="1" failures="0" time="0.003" timestamp="2014-10-27T00:57:53">
+  <testcase classname="entity-builder._entities()" name="Should return a expected/event" time="0.003"></testcase>
+</testsuite>
+<testsuite name="entity-builder._root()" errors="0" tests="1" failures="0" time="0.002" timestamp="2014-10-27T00:57:53">
+  <testcase classname="entity-builder._root()" name="Should return a expected/root" time="0.002"></testcase>
+</testsuite>
+<testsuite name="entity-builder._parse()" errors="0" tests="1" failures="0" time="0.002" timestamp="2014-10-27T00:57:53">
+  <testcase classname="entity-builder._parse()" name="Should return a expected/root" time="0.002"></testcase>
+</testsuite>
+</testsuites>
