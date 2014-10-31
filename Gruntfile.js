@@ -21,17 +21,6 @@ module.exports = function (grunt) {
                 'tasks/*.js'
             ]
         },
-        // Configuration to be run (and then tested).
-        prompt: {
-            build_models: {
-                options: {
-                    config: 'build_models.helpers',
-                    type: 'confirm',
-                    message: 'Would you like to generate Helpers ?',
-                    default: false
-                }
-            }
-        },
         build_models: {
             options: {
                 root: 'doctrine-mapping'
