@@ -24,6 +24,7 @@ module.exports = function (grunt) {
         // Configuration to be run (and then tested).
         build_models: {
             options: {
+                helpers: 'tmp/',
                 root: 'doctrine-mapping'
             },
             files: {
