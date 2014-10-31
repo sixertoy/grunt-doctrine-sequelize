@@ -40,7 +40,6 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jasmine-node": "https://github.com/malas34/grunt-jasmine-node/archive/jasmine-node_v1.14.tar.gz",
-    "grunt-prompt": "^1.3.0",
     "mysql": "^2.5.2",
     "sequelize-auto": "0.0.7"
   },

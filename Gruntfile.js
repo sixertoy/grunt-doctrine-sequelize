@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                 'tasks/*.js'
             ]
         },
+        // Configuration to be run (and then tested).
         build_models: {
             options: {
                 root: 'doctrine-mapping'
@@ -62,9 +63,8 @@ module.exports = function (grunt) {
     grunt.loadTasks('tasks');
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-prompt');
-    grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // By default, lint and run all tests.
