@@ -22,6 +22,16 @@ module.exports = function (grunt) {
             ]
         },
         // Configuration to be run (and then tested).
+        prompt: {
+            build_models: {
+                options: {
+                    config: 'build_models.helpers',
+                    type: 'confirm',
+                    message: 'Would you like to generate Helpers ?',
+                    default: false
+                }
+            }
+        },
         build_models: {
             options: {
                 root: 'doctrine-mapping'
@@ -63,8 +73,9 @@ module.exports = function (grunt) {
     grunt.loadTasks('tasks');
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-prompt');
     grunt.loadNpmTasks('grunt-jasmine-node');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // By default, lint and run all tests.
