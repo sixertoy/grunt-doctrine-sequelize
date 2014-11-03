@@ -1,7 +1,7 @@
 {
   "name": "grunt-sequelize-doctrine",
-  "description": "The best Grunt plugin ever.",
-  "version": "0.1.0",
+  "description": "Build sequelize models form doctrine XML entities",
+  "version": "0.2.0",
   "homepage": "https://github.com/malas34/grunt-sequelize-doctrine",
   "author": {
     "name": "malas34",

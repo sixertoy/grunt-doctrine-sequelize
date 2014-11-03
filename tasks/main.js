@@ -22,7 +22,9 @@ module.exports = function (grunt) {
         parseString = require('xml2js').parseString,
         format = require('js-beautify').js_beautify;
 
-    var EntityBuilder = require('./../lib/entity-builder');
+    var HelperBuilder = require('./../lib/helper-builder'),
+        EntityBuilder = require('./../lib/entity-builder'),
+        StringUtils = require('./../thirdparty/smile/lib/utils/string-utils');
 
     /**
      *
@@ -41,10 +43,15 @@ module.exports = function (grunt) {
                 entries = [],
                 done = this.async(),
                 options = this.options({
-                    rootName: false
+                    rootName: false,
+                    extension: 'dcm',
+                    helpers: 'helpers/'
                 });
-
+            grunt.file.mkdir(options.helpers);
             this.files.forEach(function (f) {
+                if (!grunt.file.exists(f.dest)) {
+                    grunt.file.mkdir(f.dest);
+                }
                 if (f.src.length) {
                     grunt.log.subhead('Start parsing doctrine files');
                     var sources = f.src.filter(function (filepath) {
@@ -76,15 +83,33 @@ module.exports = function (grunt) {
                                         }
                                     }).then(function (content) {
                                         if (content) {
+
                                             //if (content && jshint(content)) {
-                                            var fname = Path.join(Path.normalize(f.dest), Path.basename(filepath, Path.extname(filepath))) + '.js';
+                                            var bs = Path.basename(filepath, Path.extname(filepath));
+                                            if (bs.indexOf('.' + options.extension) !== -1) {
+                                                bs = Path.basename(bs, Path.extname(bs));
+                                            }
+                                            var fname = Path.join(Path.normalize(f.dest), bs) + '.js';
                                             var data = format(content, { indent_size: 4 }); // Format
                                             grunt.log.ok('Creating ' + fname); // Write
-                                            return grunt.file.write(fname, data);
+                                            var w = grunt.file.write(fname, data);
+                                            return (w) ? Path.basename(filepath, Path.extname(filepath)) : false;
 
                                         } else {
                                             grunt.fail.warn(new Error('Uncorrect file format ' + filepath));
                                         }
+                                    }).then(function(name){
+                                        // Creation des helpers
+                                        var n = name;
+                                        if (n.indexOf('.' + options.extension) !== -1) {
+                                            n = n.split('.' + options.extension)[0];
+                                        }
+                                        n = StringUtils.capitalize(n) + 'Helper';
+                                        var hbuilder = new HelperBuilder(grunt);
+                                        var hcontent = hbuilder.create(n);
+                                        var hdata = format(hcontent, { indent_size: 4 });
+                                        var hname = Path.join(Path.normalize(options.helpers), n) + '.js';
+                                        return grunt.file.write(hname, hdata);
                                     }).fin(function () {
                                         index++;
                                         if (index >= entries.length) {

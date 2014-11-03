@@ -132,3 +132,11 @@ node_modules
 *.log
 *.sql
 *.sqlite
+
+
+######################
+# Specifics
+######################
+app/
+tmp/
+models/

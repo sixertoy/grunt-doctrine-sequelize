@@ -24,7 +24,8 @@ module.exports = function (grunt) {
         // Configuration to be run (and then tested).
         build_models: {
             options: {
-                helpers: 'tmp/',
+                helpers: 'app/smile/lib/helpers/',
+                extension: 'dcm',
                 root: 'doctrine-mapping'
             },
             files: {
