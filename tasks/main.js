@@ -102,7 +102,7 @@ module.exports = function (grunt) {
                                         } else {
                                             grunt.fail.warn(new Error('Uncorrect file format ' + filepath));
                                         }
-                                    }).then(function(name){
+                                    }).then(function (name) {
                                         // Creation des helpers
                                         if (grunt.option('helpers')) {
                                             var n = name;
