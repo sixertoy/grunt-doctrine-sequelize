@@ -1,7 +1,7 @@
 {
   "name": "grunt-sequelize-doctrine",
   "description": "Build sequelize models form doctrine XML entities",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/malas34/grunt-sequelize-doctrine",
   "author": {
     "name": "malas34",

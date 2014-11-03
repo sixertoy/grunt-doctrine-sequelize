@@ -38,10 +38,26 @@ grunt.initConfig({
 });
 ```
 
+### Command line
+> Construction des modeles
+
+```bash
+$ grunt build_models
+```
+
+> Construction des modeles + des helpers
+
+```bash
+$ grunt build_models --helpers
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+### v0.3.0
+- Ajout de l'option grunt --helpers
+
 ### v0.2.0
 - Build helpers des entites
 - Ajout des extensions doctrine

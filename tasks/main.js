@@ -47,12 +47,16 @@ module.exports = function (grunt) {
                     extension: 'dcm',
                     helpers: 'helpers/'
                 });
-            grunt.file.mkdir(options.helpers);
             this.files.forEach(function (f) {
-                if (!grunt.file.exists(f.dest)) {
-                    grunt.file.mkdir(f.dest);
-                }
                 if (f.src.length) {
+                    // creation du dossier des helpers
+                    if (grunt.option('helpers') && !grunt.file.exists(options.helpers)) {
+                        grunt.file.mkdir(options.helpers);
+                    }
+                    // creation du dossier des modeles
+                    if (!grunt.file.exists(f.dest)) {
+                        grunt.file.mkdir(f.dest);
+                    }
                     grunt.log.subhead('Start parsing doctrine files');
                     var sources = f.src.filter(function (filepath) {
                         if (grunt.file.isFile(filepath)) {
@@ -100,16 +104,20 @@ module.exports = function (grunt) {
                                         }
                                     }).then(function(name){
                                         // Creation des helpers
-                                        var n = name;
-                                        if (n.indexOf('.' + options.extension) !== -1) {
-                                            n = n.split('.' + options.extension)[0];
+                                        if (grunt.option('helpers')) {
+                                            var n = name;
+                                            if (n.indexOf('.' + options.extension) !== -1) {
+                                                n = n.split('.' + options.extension)[0];
+                                            }
+                                            n = StringUtils.capitalize(n) + 'Helper';
+                                            var hbuilder = new HelperBuilder(grunt);
+                                            var hcontent = hbuilder.create(n);
+                                            var hdata = format(hcontent, { indent_size: 4 });
+                                            var hname = Path.join(Path.normalize(options.helpers), n) + '.js';
+                                            return grunt.file.write(hname, hdata);
+                                        } else {
+                                            return true;
                                         }
-                                        n = StringUtils.capitalize(n) + 'Helper';
-                                        var hbuilder = new HelperBuilder(grunt);
-                                        var hcontent = hbuilder.create(n);
-                                        var hdata = format(hcontent, { indent_size: 4 });
-                                        var hname = Path.join(Path.normalize(options.helpers), n) + '.js';
-                                        return grunt.file.write(hname, hdata);
                                     }).fin(function () {
                                         index++;
                                         if (index >= entries.length) {
