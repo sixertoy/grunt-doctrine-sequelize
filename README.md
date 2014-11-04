@@ -51,10 +51,19 @@ $ grunt build_models
 $ grunt build_models --helpers
 ```
 
+> debug
+
+```bash
+$ grunt --debug build_models
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+### v0.4.0
+- Ajout de l'option grunt --helpers-reset
+
 ### v0.3.0
 - Ajout de l'option grunt --helpers
 

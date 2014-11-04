@@ -50,13 +50,15 @@ module.exports = function (grunt) {
             this.files.forEach(function (f) {
                 if (f.src.length) {
                     // creation du dossier des helpers
-                    if (grunt.option('helpers') && !grunt.file.exists(options.helpers)) {
+                    if ((grunt.option('helpers') || grunt.option('helpers-reset')) && !grunt.file.exists(options.helpers)) {
                         grunt.file.mkdir(options.helpers);
                     }
+
                     // creation du dossier des modeles
                     if (!grunt.file.exists(f.dest)) {
                         grunt.file.mkdir(f.dest);
                     }
+
                     grunt.log.subhead('Start parsing doctrine files');
                     var sources = f.src.filter(function (filepath) {
                         if (grunt.file.isFile(filepath)) {
@@ -66,7 +68,7 @@ module.exports = function (grunt) {
                         }
                     }).map(function (filepath) {
                         if (filepath) {
-                            grunt.log.ok('Loading ' + filepath);
+                            grunt.log.debug('Loading ' + filepath);
                             xml = grunt.file.read(filepath);
                             parseString(xml, {
                                 mergeAttrs: true,
@@ -74,7 +76,7 @@ module.exports = function (grunt) {
                             }, function (err, result) {
                                 if (err === null) {
                                     grunt.log.debug('Parsing ' + filepath);
-// Pyramid of Doom
+                                    // Pyramid of Doom
                                     Q.fcall(function () {
                                         try {
                                             var builder = new EntityBuilder(grunt);
@@ -94,27 +96,53 @@ module.exports = function (grunt) {
                                                 bs = Path.basename(bs, Path.extname(bs));
                                             }
                                             var fname = Path.join(Path.normalize(f.dest), bs) + '.js';
-                                            var data = format(content, { indent_size: 4 }); // Format
-                                            grunt.log.ok('Creating ' + fname); // Write
+                                            var data = format(content, {
+                                                indent_size: 4
+                                            }); // Format
+                                            grunt.log.debug('Creating ' + fname); // Write
                                             var w = grunt.file.write(fname, data);
                                             return (w) ? Path.basename(filepath, Path.extname(filepath)) : false;
 
                                         } else {
                                             grunt.fail.warn(new Error('Uncorrect file format ' + filepath));
+
                                         }
                                     }).then(function (name) {
                                         // Creation des helpers
-                                        if (grunt.option('helpers')) {
-                                            var n = name;
+                                        if (grunt.option('helpers') || grunt.option('helpers-reset')) {
+                                            var n = name,
+                                                funcs = [];
                                             if (n.indexOf('.' + options.extension) !== -1) {
                                                 n = n.split('.' + options.extension)[0];
                                             }
                                             n = StringUtils.capitalize(n) + 'Helper';
-                                            var hbuilder = new HelperBuilder(grunt);
-                                            var hcontent = hbuilder.create(n);
-                                            var hdata = format(hcontent, { indent_size: 4 });
-                                            var hname = Path.join(Path.normalize(options.helpers), n) + '.js';
-                                            return grunt.file.write(hname, hdata);
+                                            var hcontent = '',
+                                                hbuilder = new HelperBuilder(grunt, n),
+                                                hname = Path.join(Path.normalize(options.helpers), n);
+                                            if (grunt.option('helpers-reset')) {
+                                                if (grunt.file.exists(hname + '.js')) {
+                                                    grunt.log.debug('Deleting helper ' + hname + '.js');
+                                                    grunt.file.delete(hname + '.js');
+                                                }
+                                            } else {
+                                                grunt.log.debug('Copy ' + hname);
+                                                grunt.file.copy('./' + hname + '.js', hname + '.tmp.js');
+                                                var m = require('../' + hname + '.tmp');
+                                                (Object.keys(m.prototype)).map(function (funcName) {
+                                                    if (funcName !== '__super__') {
+                                                        var method = m.prototype[funcName].toString();
+                                                        method = StringUtils.trimEndLines(method);
+                                                        funcs.push(funcName + ': ' + method);
+                                                    }
+                                                });
+                                                grunt.log.debug('delete ' + hname + '.tmp.js');
+                                                grunt.file.delete(hname + '.tmp.js');
+                                            }
+                                            grunt.log.debug('Creating helper ' + hname);
+                                            hcontent = hbuilder.create(funcs);
+                                            return grunt.file.write(hname + '.js', format(hcontent, {
+                                                indent_size: 4
+                                            }));
                                         } else {
                                             return true;
                                         }
@@ -124,7 +152,7 @@ module.exports = function (grunt) {
                                             done();
                                         }
                                     });
-// endof Pyramid of Doom
+                                    // endof Pyramid of Doom
                                 } else {
                                     grunt.fail.warn('Unable to parse file ' + filepath);
                                 }

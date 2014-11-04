@@ -28,6 +28,13 @@
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    StringUtils.trimEndLines = function(str){
+        var regex = new RegExp(/\r?\n|\r/);
+        var r = str.trim();
+        r = r.replace(regex, '');
+        return r;
+    };
+
     /**
      *
      *

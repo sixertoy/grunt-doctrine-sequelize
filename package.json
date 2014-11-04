@@ -1,7 +1,7 @@
 {
   "name": "grunt-sequelize-doctrine",
   "description": "Build sequelize models form doctrine XML entities",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "homepage": "https://github.com/malas34/grunt-sequelize-doctrine",
   "author": {
     "name": "malas34",
@@ -27,12 +27,13 @@
     "test": "grunt jasmine"
   },
   "dependencies": {
-    "xml2js": "^0.4.4",
-    "q": "^1.0.1",
-    "lodash": "^2.4.1",
+    "js-beautify": "^1.5.4",
     "jshint": "^2.5.6",
+    "lodash": "^2.4.1",
+    "q": "^1.0.1",
     "sequelize": "^2.0.0-rc2",
-    "js-beautify": "^1.5.4"
+    "winston": "^0.8.1",
+    "xml2js": "^0.4.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
