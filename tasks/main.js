@@ -125,18 +125,23 @@ module.exports = function (grunt) {
                                                     grunt.file.delete(hname + '.js');
                                                 }
                                             } else {
-                                                grunt.log.debug('Copy ' + hname);
-                                                grunt.file.copy('./' + hname + '.js', hname + '.tmp.js');
-                                                var m = require('../' + hname + '.tmp');
-                                                (Object.keys(m.prototype)).map(function (funcName) {
-                                                    if (funcName !== '__super__') {
-                                                        var method = m.prototype[funcName].toString();
-                                                        method = StringUtils.trimEndLines(method);
-                                                        funcs.push(funcName + ': ' + method);
-                                                    }
-                                                });
-                                                grunt.log.debug('delete ' + hname + '.tmp.js');
-                                                grunt.file.delete(hname + '.tmp.js');
+                                                try {
+                                                    grunt.log.debug('Copy ' + hname);
+                                                    grunt.file.copy(hname + '.js', hname + '.tmp.js');
+                                                    var required = Path.join(process.cwd(), hname + '.tmp');
+                                                    var m = require(required);
+                                                    (Object.keys(m.prototype)).map(function (funcName) {
+                                                        if (funcName !== '__super__') {
+                                                            var method = m.prototype[funcName].toString();
+                                                            method = StringUtils.trimEndLines(method);
+                                                            funcs.push(funcName + ': ' + method);
+                                                        }
+                                                    });
+                                                    grunt.log.debug('delete ' + hname + '.tmp.js');
+                                                    grunt.file.delete(hname + '.tmp.js');
+                                                } catch(e){
+                                                    grunt.log.fail(e);
+                                                }
                                             }
                                             grunt.log.debug('Creating helper ' + hname);
                                             hcontent = hbuilder.create(funcs);
