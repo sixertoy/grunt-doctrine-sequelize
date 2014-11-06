@@ -48,7 +48,11 @@ $ grunt build_models
 > Construction des modeles + des helpers
 
 ```bash
+# update helpers
 $ grunt build_models --helpers
+
+# reset helpers
+$ grunt build_models --helpers-reset
 ```
 
 > debug
