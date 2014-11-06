@@ -11,7 +11,7 @@
  *
  */
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50*/
-/*global require, module, console*/
+/*global require, module, console, process*/
 module.exports = function (grunt) {
 
     'use strict';
@@ -139,7 +139,7 @@ module.exports = function (grunt) {
                                                     });
                                                     grunt.log.debug('delete ' + hname + '.tmp.js');
                                                     grunt.file.delete(hname + '.tmp.js');
-                                                } catch(e){
+                                                } catch (e) {
                                                     grunt.log.fail(e);
                                                 }
                                             }
